@@ -1,8 +1,13 @@
 import { useState } from "react";
 import Item from "./Item";
 import OrderModal from "./OrderModal";
+import { useMenu } from "../context/menuContext";
+import { useCart } from "../context/cartContext";
 
-function Menu({ menu, cart, setCart }) {
+function Menu() {
+  const { menu } = useMenu()
+  const { cart, setCart } = useCart()
+
   const [modalOn, setModalOn] = useState(false);
   const [modalMenu, setModalMenu] = useState(null);
   if (!menu)
@@ -38,8 +43,6 @@ function Menu({ menu, cart, setCart }) {
         <OrderModal
           modalMenu={modalMenu}
           setModalOn={setModalOn}
-          cart={cart}
-          setCart={setCart}
         />
       ) : null}
     </>
